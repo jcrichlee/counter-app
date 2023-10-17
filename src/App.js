@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
 import { NumericFormat } from "react-number-format";
+import ErrorBoundary from "../src";
 
 function App() {
   const [counter, setCounter] = useState(0);
@@ -36,32 +37,34 @@ function App() {
   };
 
   return (
-    <section className="counter-container">
-      <NumericFormat
-        className="counter-label"
-        value={counter}
-        displayType={"text"}
-        thousandSeparator={true}
-        thousandsGroupStyle="thousand"
-      />
-      <div className="button-container">
-        <button className="action-button ten" onClick={handleDecreamentTen}>
-          &#8650;
-        </button>
-        <button className="action-button one" onClick={handleDecreamentOne}>
-          &#129027;
-        </button>
-        <button className="action-button one" onClick={handleIncreamentOne}>
-          &#129025;
-        </button>
-        <button className="action-button ten" onClick={handleIncreamentTen}>
-          &#8648;
-        </button>
-        <button className="action-button clear" onClick={handleClear}>
-          &#10227;
-        </button>
-      </div>
-    </section>
+    <ErrorBoundary fallback="There was an error. Press F5 to refresh">
+      <section className="counter-container">
+        <NumericFormat
+          className="counter-label"
+          value={counter}
+          displayType={"text"}
+          thousandSeparator={true}
+          thousandsGroupStyle="thousand"
+        />
+        <div className="button-container">
+          <button className="action-button ten" onClick={handleDecreamentTen}>
+            &#8650;
+          </button>
+          <button className="action-button one" onClick={handleDecreamentOne}>
+            &#129027;
+          </button>
+          <button className="action-button one" onClick={handleIncreamentOne}>
+            &#129025;
+          </button>
+          <button className="action-button ten" onClick={handleIncreamentTen}>
+            &#8648;
+          </button>
+          <button className="action-button clear" onClick={handleClear}>
+            &#10227;
+          </button>
+        </div>
+      </section>
+    </ErrorBoundary>
   );
 }
 
